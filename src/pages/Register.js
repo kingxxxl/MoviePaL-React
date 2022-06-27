@@ -8,7 +8,9 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import Logo from '../img/logobs.png';
+// import Logo from '../img/logobs.png';
+import Logo from '../img/posters.jpg';
+
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
@@ -37,7 +39,10 @@ const Login = () => {
         justifyContent="center"
       >
         <VStack width={['90%', '600px']} spacing="2rem">
-          <Text fontWeight="bold" color="#121440" fontSize="70px">
+          <Text fontWeight="extrabold" color="blue.700" fontSize="70px">
+            MoviePal
+          </Text>
+          <Text  color="#121440" fontSize="70px">
             Welcome !
           </Text>
           <Input
@@ -77,7 +82,7 @@ const Login = () => {
         justifyContent="center"
         backgroundColor="#F9F9FC"
       >
-        <Image src={Logo} width="493px" height="555px"></Image>
+        <Image src={Logo} width="100%" height="100%"></Image>
       </Flex>
     </HStack>
   );

@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
       if (request.status === 201) {
+        localStorage.setItem('userName', username);
         return true;
       }
       return false;
@@ -30,8 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const url = 'http://localhost:8080/user/register';
-      const request = await fetch(url, {
+      const request = await fetch('/user/register', {
         headers: {
           'Content-Type': 'application/json',
         },
