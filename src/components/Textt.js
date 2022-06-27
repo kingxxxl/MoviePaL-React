@@ -4,7 +4,7 @@ import * as PropTypes from "prop-types";
 import Imdb from '../img/IMDB_Logo_2016.svg.png';
 
 
-const Textt = ({property, movie}) => {
+const Textt = ({ movie}) => {
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='xl'  p={"1"}    >
             <Image w={"100rem"} src={movie.poster} alt={"..."}/>

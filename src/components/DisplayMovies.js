@@ -61,23 +61,15 @@ const DisplayMovies = ({movies}) => {
         }
     }
 
-    const property = {
-        imageUrl: 'https://bit.ly/2Z4KKcF',
-        imageAlt: 'Rear view of modern home with pool',
-        beds: 3,
-        baths: 2,
-        title: 'Modern home in city center in the heart of historic Los Angeles',
-        formattedPrice: '$1,900.00',
-        reviewCount: 34,
-        rating: 4,
-    }
+
     return (
 
         <>
             <Box bg={"#101526"}>
-                <SimpleGrid minChildWidth={['10rem', '15rem']} spacing='40px'>
+                <SimpleGrid columns={[2, 3, 4]}
+                            spacing={"40px"}>
                     {movies.map(movie => (
-                        <Textt key={movie.imdbID} property={property} movie={movie}/>
+                        <Textt key={movie.imdbID}  movie={movie}/>
                     ))}
                 </SimpleGrid>
 
@@ -120,10 +112,6 @@ const DisplayMovies = ({movies}) => {
                         <ModalBody>
 
                             <VStack bg={"#101526"}>
-
-                                {/*<Box>*/}
-                                {/*    <Text textColor={"white"} fontSize={"3rem"}>Add Movie To Your List</Text>*/}
-                                {/*</Box>*/}
 
                                 <Box>
                                     <Input textColor={"white"} onChange={(e) => setMovie(e.target.value)}
