@@ -31,10 +31,10 @@ const AddMovie = () => {
 
     return (
         <>
-            <VStack>
+            <VStack h={"100vh"}  bg={"#101526"}>
 
                 <Box>
-                    <Text fontSize={"3rem"}>Add Movie To Your List</Text>
+                    <Text textColor={"gray"} fontSize={"3rem"}>Add Movie To Your List</Text>
                 </Box>
 
                 <Box>
