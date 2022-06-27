@@ -31,72 +31,23 @@ const DisplayMovies = ({movies}) => {
     }
     return (
 
-        // <>
-        //
-        //     {/*<VStack>*/}
-        //
-        //
-        //     {/*<Box bg={"black"}display={"flex"} justifyContent={"center"} alignItems={"center"}>*/}
-        //
-        //         {/*<Grid templateColumns='repeat(5, 1fr)' gap={4}>*/}
-        //
-        //
-        //
-        //         {/*        {movies.map(movie => (*/}
-        //
-        //         {/*            <GridItem colStart={0} colEnd={4} h='10' bg='papayawhip' >*/}
-        //
-        //         {/*                    <Image display={"flex"} src={movie.poster} alt="..."/>*/}
-        //         {/*                    <Text color={"white"} key={movie.imdbID}>{movie.title} {movie.year}</Text>*/}
-        //
-        //         {/*            </GridItem>*/}
-        //
-        //         {/*        ))}*/}
-        //
-        //         {/*</Grid>*/}
-        //
-        //
-        //         {/*{ movies.map(movie => (*/}
-        //         {/*    <Box key={movie.imdbID}>*/}
-        //         {/*        <Image w={"100%"} h={"100%"} src={movie.poster} alt="..."/>*/}
-        //         {/*        <Textt key={movie.imdbID}>{movie.title} {movie.year}</Textt>*/}
-        //         {/*    </Box>*/}
-        //         {/*))}*/}
-        //
-        //
-        //         {/*//todo later*/}
-        //         {/*{*/}
-        //         {/*    checkCounter() && movies.map(movie => (*/}
-        //         {/*        <Box key={movie.imdbID}>*/}
-        //         {/*            <Image w={"100%"} h={"100%"} src={movie.poster} alt="..."/>*/}
-        //         {/*            <Textt key={movie.imdbID}>{movie.title} {movie.year}</Textt>*/}
-        //         {/*        </Box>*/}
-        //         {/*    ))*/}
-        //         {/*}*/}
-        //
-        //
-        //
-        //
-        //     </Box>
-        //         <Button alignSelf={"center"} onClick={() => navigate("/add-movie")}>
-        //             Add Movies
-        //         </Button>
-        //         <Button alignSelf={"center"} onClick={() => navigate(-1)}>
-        //             Go Back
-        //         </Button>
-        //     </VStack>
-        // </>
-
-
         <>
-
-            <SimpleGrid minChildWidth={['15rem','30rem']} spacing='40px'>
+            <Box >
+            <SimpleGrid minChildWidth={['15rem', '30rem']} spacing='40px'>
                 {movies.map(movie => (
-
                     <Textt key={movie.imdbID} property={property} movie={movie}/>
                 ))}
-
             </SimpleGrid>
+
+            <VStack>
+                <Button alignSelf={"center"} onClick={() => navigate("/add-movie")}>
+                    Add Movies
+                </Button>
+                <Button alignSelf={"center"} onClick={() => navigate(-1)}>
+                    Go Back
+                </Button>
+            </VStack>
+            </Box>
         </>
 
 
