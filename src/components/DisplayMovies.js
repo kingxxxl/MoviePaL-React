@@ -15,18 +15,39 @@ import {
 } from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import Textt from "./Textt";
+import {Select} from "chakra-react-select";
 
 const DisplayMovies = ({movies}) => {
     const navigate = useNavigate();
     const [counter, setCounter] = useState(0);
     const [isNewLine, setIsNewLine] = useState(true);
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const {isOpen, onOpen, onClose} = useDisclosure()
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const [list, setList] = useState("");
+    const [movie, setMovie] = useState("");
 
+    console.log(list);
+    console.log(movie);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const request = await fetch('/movie/add/name/wish-list/' + movie, {
+            method: 'POST',
+        });
+        const data = await request.json();
+        if (request.status === 200) {
+            console.log(data);
+            navigate(0)
+        }
+        if (request.status === 404) {
+            console.log('error');
+            return;
+        }
+    }
 
 
     const checkCounter = async () => {
@@ -93,27 +114,55 @@ const DisplayMovies = ({movies}) => {
                     isOpen={isOpen}
                     onClose={onClose}
                 >
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>Create your account</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody pb={6}>
-                            <FormControl>
-                                <FormLabel>First name</FormLabel>
-                                <Input ref={initialRef} placeholder='First name' />
-                            </FormControl>
+                    <ModalOverlay backdropFilter={"blur(6px)"}/>
+                    <ModalContent bg={"#101526"}>
+                        <ModalHeader textColor={"white"} bg={"#101526"}>Add Movie To Your List</ModalHeader>
+                        <ModalBody>
 
-                            <FormControl mt={4}>
-                                <FormLabel>Last name</FormLabel>
-                                <Input placeholder='Last name' />
-                            </FormControl>
+                            <VStack bg={"#101526"}>
+
+                                {/*<Box>*/}
+                                {/*    <Text textColor={"white"} fontSize={"3rem"}>Add Movie To Your List</Text>*/}
+                                {/*</Box>*/}
+
+                                <Box>
+                                    <Input textColor={"white"} onChange={(e) => setMovie(e.target.value)}
+                                           placeholder={"Movie Title"} value={movie}/>
+                                    <Box width={"100%"} bgColor={"white"} textColor={"black"}>
+                                        <Select
+                                            onChange={(e) => setList(e.value)}
+                                            placeholder={"Select a list"}
+                                            options={[
+                                                {
+                                                    label: "Wish List",
+                                                    value: "wish",
+                                                },
+                                                {
+                                                    label: "Favorite List",
+                                                    value: "favorite",
+                                                },
+                                                {
+                                                    label: "Watched List",
+                                                    value: "watched",
+                                                },
+                                            ]}
+                                        />
+                                    </Box>
+
+                                </Box>
+
+                            </VStack>
+
                         </ModalBody>
 
                         <ModalFooter>
-                            <Button colorScheme='blue' mr={3}>
-                                Save
+                            <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
+                                Add The Movie
+
                             </Button>
-                            <Button onClick={onClose}>Cancel</Button>
+
+                            <Button onClick={onClose}>
+                                Go Back </Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>

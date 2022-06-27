@@ -25,10 +25,10 @@ const Wishlist = () => {
 
 
     return (
-        <>
+        <Box h={"100vh"} bg={"#101526"}>
             <DisplayMovies movies ={movies}/>
 
-        </>
+        </Box>
     )
 }
 export default Wishlist;

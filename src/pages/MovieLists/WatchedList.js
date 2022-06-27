@@ -27,10 +27,10 @@ const WatchedList = () => {
 
 
     return (
-        <>
+        <Box Box h={"100vh"} bg={"#101526"}>
             <DisplayMovies movies={movies}/>
 
-        </>
+        </Box>
     )
 }
 export default WatchedList;

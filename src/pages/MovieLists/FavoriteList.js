@@ -26,11 +26,11 @@ const FavoriteList = () => {
 
 
     return (
-        <>
+        <Box h={"100vh"} bg={"#101526"}>
 
             <DisplayMovies movies={movies}/>
 
-        </>
+        </Box>
     )
 }
 export default FavoriteList;

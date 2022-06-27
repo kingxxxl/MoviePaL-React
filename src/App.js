@@ -17,12 +17,11 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<RequireAuth />}>
+          <Route  element={<RequireAuth />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/favorite-list" element={<FavoriteList />} />
             <Route path="/watched-list" element={<WatchedList />} />
-            <Route path="/add-movie" element={<AddMovie />} />
           </Route>
         </Routes>
       </BrowserRouter>
