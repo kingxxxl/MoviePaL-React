@@ -4,9 +4,9 @@ import * as PropTypes from "prop-types";
 import Imdb from '../img/IMDB_Logo_2016.svg.png';
 
 
-const Textt = ({ movie}) => {
+const Textt = ({movie}) => {
     return (
-        <Box maxW='sm' borderWidth='1px' borderRadius='xl'  p={"1"}    >
+        <Box maxW='sm' borderWidth='1px' borderRadius='xl' p={"1"}>
             <Image w={"100rem"} src={movie.poster} alt={"..."}/>
 
             <Box p='3'>
@@ -40,7 +40,7 @@ const Textt = ({ movie}) => {
                     {movie.title}
                 </Box>
 
-                <Box color='white'  fontSize='xl'>
+                <Box color='white' fontSize='xl'>
                     {movie.year}
                 </Box>
 

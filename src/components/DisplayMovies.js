@@ -69,7 +69,7 @@ const DisplayMovies = ({movies}) => {
                 <SimpleGrid columns={[2, 3, 4]}
                             spacing={"40px"}>
                     {movies.map(movie => (
-                        <Textt key={movie.imdbID}  movie={movie}/>
+                        <Textt key={movie.imdbID} movie={movie}/>
                     ))}
                 </SimpleGrid>
 
@@ -107,19 +107,30 @@ const DisplayMovies = ({movies}) => {
                     onClose={onClose}
                 >
                     <ModalOverlay backdropFilter={"blur(6px)"}/>
-                    <ModalContent bg={"#101526"}>
+                    <ModalContent bg={"#101526"} outlineColor={"#6f00ff"}
+                    >
                         <ModalHeader textColor={"white"} bg={"#101526"}>Add Movie To Your List</ModalHeader>
                         <ModalBody>
 
-                            <VStack bg={"#101526"}>
+                            <VStack bg={"#101526"}
+                            >
 
                                 <Box>
                                     <Input textColor={"white"} onChange={(e) => setMovie(e.target.value)}
-                                           placeholder={"Movie Title"} value={movie}/>
-                                    <Box width={"100%"} bgColor={"white"} textColor={"black"}>
+                                           placeholder={"Movie Title"} value={movie}
+                                    />
+                                    <Box width={"100%"}
+                                         bgColor={"#101526"}
+                                         textColor={"gray"}
+
+                                    >
                                         <Select
+
                                             onChange={(e) => setList(e.value)}
                                             placeholder={"Select a list"}
+                                            borderColor={"#265798"}
+
+
                                             options={[
                                                 {
                                                     label: "Wish List",
