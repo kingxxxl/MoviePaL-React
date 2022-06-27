@@ -10,7 +10,7 @@ const WatchedList = () => {
         const requestWatchedList = async () => {
             const request = await fetch('/user/watched-list');
             const data = await request.json();
-            console.log("the fuck?!" + data);
+            console.log(data);
             if (request.status === 200) {
                 console.log(data);
                 setMovies(data);

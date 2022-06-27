@@ -32,8 +32,8 @@ const DisplayMovies = ({movies}) => {
     return (
 
         <>
-            <Box >
-            <SimpleGrid minChildWidth={['15rem', '30rem']} spacing='40px'>
+            <Box bg={"#101526"}>
+            <SimpleGrid minChildWidth={['10rem', '15rem']} spacing='40px'>
                 {movies.map(movie => (
                     <Textt key={movie.imdbID} property={property} movie={movie}/>
                 ))}
