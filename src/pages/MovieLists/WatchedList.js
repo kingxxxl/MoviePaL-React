@@ -1,11 +1,11 @@
 import React, { useEffect, useState} from 'react';
-import {Box, Button, HStack, Link, Text, VStack} from '@chakra-ui/react';
+import {Box, Button, HStack, Image, Link, Text, VStack} from '@chakra-ui/react';
 import {Navigate, useNavigate} from 'react-router-dom';
+import DisplayMovies from "../../components/DisplayMovies";
 
 const WatchedList = () => {
 
     const [movies, setMovies] = useState([]);
-    const navigate = useNavigate();
     useEffect(() => {
         const requestWatchedList = async () => {
             const request = await fetch('/user/watched-list');
@@ -27,15 +27,10 @@ const WatchedList = () => {
 
 
     return (
-        <VStack>
-            <Text color="#121440" fontSize="70px">
-                {movies.map(movie => (<Text key={movie.imdbID}>{movie.title} {movie.year}</Text>))}
-            </Text>
+        <>
+            <DisplayMovies movies={movies}/>
 
-            <Button onClick={() => navigate(-1)}>
-                Go Back
-            </Button>
-        </VStack>
+        </>
     )
 }
 export default WatchedList;

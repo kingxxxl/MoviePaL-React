@@ -8,6 +8,7 @@ import RequireAuth from './components/RequireAuth';
 import Wishlist from "./pages/MovieLists/Wishlist";
 import FavoriteList from "./pages/MovieLists/FavoriteList";
 import WatchedList from "./pages/MovieLists/WatchedList";
+import AddMovie from "./pages/AddMovie";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/favorite-list" element={<FavoriteList />} />
             <Route path="/watched-list" element={<WatchedList />} />
+            <Route path="/add-movie" element={<AddMovie />} />
           </Route>
         </Routes>
       </BrowserRouter>
