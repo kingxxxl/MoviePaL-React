@@ -1,17 +1,16 @@
 import React from 'react';
 import {Badge, Box, Image} from "@chakra-ui/react";
-import * as PropTypes from "prop-types";
 import Imdb from '../img/IMDB_Logo_2016.svg.png';
 
 
-const Textt = ({movie}) => {
+const MovieCard = ({movie}) => {
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='xl' p={"1"}>
             <Image w={"100rem"} src={movie.poster} alt={"..."}/>
 
             <Box p='3'>
                 <Box display='flex' alignItems='baseline'>
-                    <Badge borderRadius='full' px='2' colorScheme='teal'>
+                    <Badge borderRadius='full'   px='2' colorScheme='teal'>
                         {movie.type}
                     </Badge>
                     <Box
@@ -56,4 +55,4 @@ const Textt = ({movie}) => {
     )
 };
 
-export default Textt;
+export default MovieCard;

@@ -8,7 +8,6 @@ import RequireAuth from './components/RequireAuth';
 import Wishlist from "./pages/MovieLists/Wishlist";
 import FavoriteList from "./pages/MovieLists/FavoriteList";
 import WatchedList from "./pages/MovieLists/WatchedList";
-import AddMovie from "./pages/AddMovie";
 
 const App = () => {
   return (

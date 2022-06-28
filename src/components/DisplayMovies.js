@@ -14,8 +14,8 @@ import {
     VStack
 } from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
-import Textt from "./Textt";
 import {Select} from "chakra-react-select";
+import MovieCard from "./MovieCard";
 
 const DisplayMovies = ({movies}) => {
     const navigate = useNavigate();
@@ -35,15 +35,14 @@ const DisplayMovies = ({movies}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const request = await fetch('/movie/add/name/wish-list/' + movie, {
+        const request = await fetch("/movie/add/name/" + list + "-list/" + movie, {
             method: 'POST',
         });
         const data = await request.json();
         if (request.status === 200) {
-            console.log(data);
             navigate(0)
         }
-        if (request.status === 404) {
+        if (request.status === 400) {
             console.log('error');
             return;
         }
@@ -69,7 +68,7 @@ const DisplayMovies = ({movies}) => {
                 <SimpleGrid columns={[2, 3, 6]}
                             spacing={"40px"}>
                     {movies.map(movie => (
-                        <Textt key={movie.imdbID} movie={movie}/>
+                        <MovieCard key={movie.imdbID} movie={movie}/>
                     ))}
                 </SimpleGrid>
 
