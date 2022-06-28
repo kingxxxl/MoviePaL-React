@@ -28,6 +28,7 @@ const DisplayMovies = ({movies}) => {
     const finalRef = React.useRef(null)
     const [list, setList] = useState("");
     const [movie, setMovie] = useState("");
+    const [foundMovies, setFoundMovies] = useState([]);
 
     console.log(list);
     console.log(movie);
@@ -49,15 +50,20 @@ const DisplayMovies = ({movies}) => {
     }
 
 
-    const checkCounter = async () => {
-        await console.log(counter);
-        if (counter > 3) {
-            setIsNewLine(true);
-        } else {
-            console.log("no new line");
-            setCounter(counter + 1);
-            setIsNewLine(false);
+    const findMovie = async (e) => {
+        setMovie(e.target.value)
+        setCounter(counter + 1);
+        if (counter >=3){
+            const request = await  fetch(`https://www.omdbapi.com/?s=${e.target.value}&apikey=65199301&type=movie`,
+                {method: 'GET'});
+            const data = await request.json();
+            // console.log(data.Search);
+            await setFoundMovies(data.Search);
+            if (request.status === 200) {
+                setFoundMovies(data.Search);
+            }
         }
+        console.log(foundMovies);
     }
 
 
