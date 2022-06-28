@@ -66,7 +66,7 @@ const DisplayMovies = ({movies}) => {
 
         <>
             <Box bg={"#101526"}>
-                <SimpleGrid columns={[2, 3, 4]}
+                <SimpleGrid columns={[2, 3, 6]}
                             spacing={"40px"}>
                     {movies.map(movie => (
                         <Textt key={movie.imdbID} movie={movie}/>
