@@ -19,7 +19,7 @@ import MovieCard from "./MovieCard";
 
 
 
-const DisplayMovies = ({movies}) => {
+const DisplayMovies = ({movies, listType}) => {
     const navigate = useNavigate();
     const [counter, setCounter] = useState(0);
     const [isNewLine, setIsNewLine] = useState(true);
@@ -95,7 +95,7 @@ return (
             <SimpleGrid columns={[2, 3, 6]}
                         spacing={"40px"}>
                 {movies.map(movie => (
-                    <MovieCard key={movie.imdbID} movie={movie}/>
+                    <MovieCard key={movie.imdbID} movie={movie} listType={listType}/>
                 ))}
             </SimpleGrid>
 

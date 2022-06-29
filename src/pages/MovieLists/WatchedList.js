@@ -37,7 +37,7 @@ const WatchedList = () => {
                     <Spinner color={"white"} size="xl" mt={"50vh"} />}
             </Stack>
 
-            {!loading && <DisplayMovies movies={movies}/>
+            {!loading && <DisplayMovies movies={movies} listType={"watched"}/>
             }
         </Box>
     )

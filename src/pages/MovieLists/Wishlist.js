@@ -11,7 +11,7 @@ const Wishlist = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const requestMovie = async () => {
-            const request = await fetch('/user/wishlist');
+            const request = await fetch('/user/wish-list');
             const data = await request.json();
             console.log(data);
             if (request.status === 200) {
@@ -36,7 +36,7 @@ const Wishlist = () => {
                 <Spinner color={"white"} size="xl" mt={"50vh"} />}
             </Stack>
 
-            {!loading && <DisplayMovies movies={movies}/>
+            {!loading && <DisplayMovies movies={movies} listType={"wish"} />
             }
         </Box>
     )
