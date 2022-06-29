@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import {
-  Button,
+  Button, Divider,
   Flex,
   HStack,
   Image,
   Input,
-  Link as ChakraLink,
+  Link as ChakraLink, Stack,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -36,11 +36,10 @@ const Login = ({ setLoggedIn, loggedIn }) => {
   }
 
   return (
-    <HStack spacing="0">
+    <HStack bg={"#101526"} spacing="0">
       <Flex
         height="100vh"
         width={['100%', '100%', '50%']}
-        backgroundColor="white"
         alignItems="center"
         justifyContent="center"
       >
@@ -48,7 +47,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           <Text fontWeight="extrabold" color="blue.700" fontSize="70px">
             MoviePal
           </Text>
-          <Text color="#121440" fontSize="70px">
+          <Text color="white" fontSize="70px">
             Welcome back
           </Text>
           <Input
@@ -57,6 +56,8 @@ const Login = ({ setLoggedIn, loggedIn }) => {
             height="53px"
             placeholder="Username"
             type="text"
+            color={"white"}
+
           ></Input>
           <Input
             value={password}
@@ -64,6 +65,8 @@ const Login = ({ setLoggedIn, loggedIn }) => {
             height="53px"
             placeholder="Password"
             type="password"
+            color={"white"}
+
           ></Input>
           <Button
             fontSize="1.5rem"
@@ -74,12 +77,18 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           >
             Login
           </Button>
-          <HStack fontSize="22px">
-            <Text color="#A8A6AF">You don't have an account</Text>
-            <Link to="/register">Register !</Link>
+          <HStack textColor={"#6f00ff"} fontSize="22px">
+            <Text color="#A8A6AF">You don't have an account? </Text>
+
+            <Link   to="/register">Register !</Link>
           </HStack>
         </VStack>
+
       </Flex>
+
+      <Stack  bg={"#6f00ff"} direction='row' h='110vh' p={"2px"}>
+      </Stack>
+
       <Flex
         width="50%"
         display={['none', 'none', 'flex']}

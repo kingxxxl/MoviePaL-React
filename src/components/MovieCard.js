@@ -37,7 +37,7 @@ const MovieCard = ({movie, listType}) => {
 
             <Box  axW='sm' borderWidth='1px' borderRadius='xl' p={"1"} overflow='hidden'>
 
-            <Image boxSize='280px' boxShadow={"-webkit-box-shadow: 5px 13px 28px 5px #2D3B6A; \n" +
+            <Image boxSize='315px' boxShadow={"-webkit-box-shadow: 5px 13px 28px 5px #2D3B6A; \n" +
                 "box-shadow: 5px 13px 28px 5px #2D3B6A;"} borderRadius='xl' src={movie.poster} alt={"..."}/>
 
             <Box p='3'>
