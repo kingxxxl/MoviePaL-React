@@ -6,6 +6,8 @@ import DisplayMovies from "../../components/DisplayMovies";
 const Wishlist = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [noMovies, setNoMovies] = useState(false);
+
 
 
     const navigate = useNavigate();
@@ -17,10 +19,13 @@ const Wishlist = () => {
             if (request.status === 200) {
                 setLoading(false);
                 setMovies(data);
+                setLoading(false);
+
             }
             if (request.status === 400) {
                 console.log('error');
-                setMovies(["no movies"])
+                setLoading(false);
+                setNoMovies(true);
                 return;
             }
         };
@@ -36,8 +41,8 @@ const Wishlist = () => {
                 <Spinner color={"white"} size="xl" mt={"50vh"} />}
             </Stack>
 
-            {!loading && <DisplayMovies movies={movies} listType={"wish"} />
-            }
+            {(!loading && !noMovies)&& <DisplayMovies movies={movies} listType={"wish"} />}
+            {(!loading && noMovies)  && <DisplayMovies movies={movies} listType={"wish"} />}
         </Box>
     )
 }

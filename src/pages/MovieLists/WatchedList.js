@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Button, HStack, Image, Link, Spinner, Stack, Text, VStack} from '@chakra-ui/react';
 import {Navigate, useNavigate} from 'react-router-dom';
 import DisplayMovies from "../../components/DisplayMovies";
@@ -7,6 +7,7 @@ const WatchedList = () => {
 
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [noMovies, setNoMovies] = useState(false);
 
     useEffect(() => {
         const requestWatchedList = async () => {
@@ -20,7 +21,8 @@ const WatchedList = () => {
             }
             if (request.status === 400) {
                 console.log('error');
-                setMovies(["no movies"])
+                setLoading(false);
+                setNoMovies(true);
                 return;
             }
         };
@@ -28,17 +30,16 @@ const WatchedList = () => {
     }, []);
 
 
-
     return (
         <Box h={"100vh"} bg={"#101526"}>
 
-            <Stack  isInline spacing={4} display={"flex"} justifyContent={"center"}>
+            <Stack isInline spacing={4} display={"flex"} justifyContent={"center"}>
                 {loading &&
-                    <Spinner color={"white"} size="xl" mt={"50vh"} />}
+                    <Spinner color={"white"} size="xl" mt={"50vh"}/>}
             </Stack>
 
-            {!loading && <DisplayMovies movies={movies} listType={"watched"}/>
-            }
+            {(!loading && !noMovies) && <DisplayMovies movies={movies} listType={"watched"}/>}
+            {(!loading && noMovies) && <DisplayMovies movies={movies} listType={"watched"}/>}
         </Box>
     )
 }

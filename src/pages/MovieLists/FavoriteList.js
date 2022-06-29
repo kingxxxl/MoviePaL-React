@@ -8,6 +8,7 @@ import DisplayMovies from "../../components/DisplayMovies";
 const FavoriteList = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [noMovies, setNoMovies] = useState(false);
 
     useEffect(() => {
         const requestFavoriteList = async () => {
@@ -19,7 +20,8 @@ const FavoriteList = () => {
             }
             if (request.status === 400) {
                 console.log('error');
-                setMovies(["no movies"])
+                setLoading(false);
+                setNoMovies(true);
                 return;
             }
         };
@@ -35,8 +37,8 @@ const FavoriteList = () => {
                     <Spinner color={"white"} size="xl" mt={"50vh"}/>}
             </Stack>
 
-            {!loading && <DisplayMovies movies={movies} listType={"favorite"}/>
-            }
+            {(!loading && !noMovies) && <DisplayMovies movies={movies} listType={"favorite"}/>}
+            {(!loading && noMovies) && <DisplayMovies movies={movies} listType={"favorite"}/>}
         </Box>
     )
 }

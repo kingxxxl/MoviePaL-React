@@ -13,7 +13,8 @@ const MovieCard = ({movie, listType}) => {
 
     const removeMovie = async (e) => {
         const movieRemoved = e.target.getAttribute('id');
-        console.log(movieRemoved)
+        console.log(movieRemoved);
+        console.log(e)
         console.log(listType)
 
         const request = await fetch("/movie/remove/name/"+listType + "-list/" + movieRemoved, {
