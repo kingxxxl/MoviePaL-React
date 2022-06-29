@@ -80,7 +80,6 @@ const findMovie = async (e) => {
         setSearch(foundMovies);
     }, [foundMovies]) ;
 
-    console.log(search);
 
     function copyMovie(e) {
         const temp = e.target.firstChild.data

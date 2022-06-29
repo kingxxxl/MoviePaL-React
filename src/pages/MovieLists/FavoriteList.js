@@ -13,7 +13,6 @@ const FavoriteList = () => {
         const requestFavoriteList = async () => {
             const request = await fetch('/user/favorite-list');
             const data = await request.json();
-            console.log("no no" + data);
             if (request.status === 200) {
                 setMovies(data);
                 setLoading(false);
