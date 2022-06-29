@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     Button,
@@ -7,7 +7,7 @@ import {
     Grid,
     GridItem,
     HStack,
-    Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,
+    Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Progress,
     SimpleGrid,
     Stack,
     Text, useDisclosure,
@@ -16,6 +16,8 @@ import {
 import {useNavigate} from "react-router-dom";
 import {Select} from "chakra-react-select";
 import MovieCard from "./MovieCard";
+
+
 
 const DisplayMovies = ({movies}) => {
     const navigate = useNavigate();
@@ -29,152 +31,189 @@ const DisplayMovies = ({movies}) => {
     const [list, setList] = useState("");
     const [movie, setMovie] = useState("");
     const [foundMovies, setFoundMovies] = useState([]);
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [foundsomething, setFoundsomething] = useState(false);
+    const [search, setSearch] = useState([]);
 
-    console.log(list);
-    console.log(movie);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        const request = await fetch("/movie/add/name/" + list + "-list/" + movie, {
-            method: 'POST',
-        });
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const request = await fetch("/movie/add/name/" + list + "-list/" + movie, {
+        method: 'POST',
+    });
+    const data = await request.json();
+    if (request.status === 200) {
+        navigate(0)
+    }
+    if (request.status === 400) {
+        console.log('error');
+        return;
+    }
+}
+
+
+
+const findMovie = async (e) => {
+    setMovie(e.target.value)
+    setCounter(counter + 1);
+    if (counter >= 3) {
+        setSearchLoading(true);
+        const request = await fetch(`https://www.omdbapi.com/?s=${e.target.value}&apikey=65199301&type=movie`,
+            {method: 'GET'});
         const data = await request.json();
-        if (request.status === 200) {
-            navigate(0)
-        }
-        if (request.status === 400) {
-            console.log('error');
-            return;
-        }
-    }
 
-
-    const findMovie = async (e) => {
-        setMovie(e.target.value)
-        setCounter(counter + 1);
-        if (counter >=3){
-            const request = await  fetch(`https://www.omdbapi.com/?s=${e.target.value}&apikey=65199301&type=movie`,
-                {method: 'GET'});
-            const data = await request.json();
-            // console.log(data.Search);
+        if (data.Search === undefined) {
+        } else {
             await setFoundMovies(data.Search);
-            if (request.status === 200) {
-                setFoundMovies(data.Search);
-            }
+            await setSearchLoading(true);
+            setTimeout(() => {
+                console.log("Delayed for 1 second.");
+            }, "7000")
+            await setFoundMovies(data.Search);
+
         }
-        console.log(foundMovies);
+    }
+    setSearchLoading(false);
+    setCounter(e.target.value.length);
+}
+    useEffect(() => {
+        setSearch(foundMovies);
+    }, [foundMovies]) ;
+
+    console.log(search);
+
+    function copyMovie(e) {
+        setMovie(e.target.innerText)
     }
 
+return (
 
-    return (
+    <>
+        <Box bg={"#101526"}>
+            <SimpleGrid columns={[2, 3, 6]}
+                        spacing={"40px"}>
+                {movies.map(movie => (
+                    <MovieCard key={movie.imdbID} movie={movie}/>
+                ))}
+            </SimpleGrid>
 
-        <>
-            <Box bg={"#101526"}>
-                <SimpleGrid columns={[2, 3, 6]}
-                            spacing={"40px"}>
-                    {movies.map(movie => (
-                        <MovieCard key={movie.imdbID} movie={movie}/>
-                    ))}
-                </SimpleGrid>
-
-                <VStack>
-
-
-                    <ButtonGroup gap='4' my={"3"}>
-
-                        <VStack>
-                            <Button colorScheme='whiteAlpha' my={"3"} p={"6"}
-                                    fontWeight={"bold"}
-                                    fontSize={"1.5rem"}
-                                    w={"15rem"} h={"3rem"}
-                                    onClick={onOpen}
-                            > Add Movies
-                            </Button>
-                            <Button colorScheme='blackAlpha' w={"15rem"}
-                                    fontWeight={"bold"}
-
-                                    fontSize={"1.5rem"} h={"3rem"} my={"5"} p={"4"} onClick={() => navigate(-1)}> Go
-                                Back</Button>
+            <VStack>
 
 
-                        </VStack>
-                    </ButtonGroup>
+                <ButtonGroup gap='4' my={"3"}>
+
+                    <VStack>
+                        <Button colorScheme='whiteAlpha' my={"3"} p={"6"}
+                                fontWeight={"bold"}
+                                fontSize={"1.5rem"}
+                                w={"15rem"} h={"3rem"}
+                                onClick={onOpen}
+                        > Add Movies
+                        </Button>
+                        <Button colorScheme='blackAlpha' w={"15rem"}
+                                fontWeight={"bold"}
+
+                                fontSize={"1.5rem"} h={"3rem"} my={"5"} p={"4"} onClick={() => navigate(-1)}> Go
+                            Back</Button>
 
 
-                </VStack>
+                    </VStack>
+                </ButtonGroup>
 
 
-                <Modal
-                    initialFocusRef={initialRef}
-                    finalFocusRef={finalRef}
-                    isOpen={isOpen}
-                    onClose={onClose}
+            </VStack>
+
+
+            <Modal
+                initialFocusRef={initialRef}
+                finalFocusRef={finalRef}
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay backdropFilter={"blur(6px)"}/>
+                <ModalContent bg={"#101526"} outlineColor={"#6f00ff"}
                 >
-                    <ModalOverlay backdropFilter={"blur(6px)"}/>
-                    <ModalContent bg={"#101526"} outlineColor={"#6f00ff"}
-                    >
-                        <ModalHeader textColor={"white"} bg={"#101526"}>Add Movie To Your List</ModalHeader>
-                        <ModalBody>
+                    <ModalHeader textColor={"white"} bg={"#101526"}>Add Movie To Your List</ModalHeader>
+                    <ModalBody>
 
-                            <VStack bg={"#101526"}
-                            >
+                        <VStack bg={"#101526"}
+                        >
 
-                                <Box>
-                                    <Input textColor={"white"} onChange={(e) => setMovie(e.target.value)}
-                                           placeholder={"Movie Title"} value={movie}
+                            <Box>
+                                {
+                                    searchLoading && <Progress size='xs' isIndeterminate/>
+
+                                }
+
+
+                                <Input textColor={"white"} onChange={findMovie}
+                                       placeholder={"Movie Title"} value={movie}
+                                />
+
+                                <VStack>
+                                    {foundMovies.map(movie => (
+
+                                        <Text onClick={copyMovie} color={"white"} key={movie.imdbID} value={movie.Title}>{movie.Title}</Text>
+
+                                    ))}
+
+                                    {/*<Text color={"white"} >{foundMovies[0].Title}</Text>*/}
+                                </VStack>
+                                <Box width={"100%"}
+                                     bgColor={"#101526"}
+                                     textColor={"gray"}
+
+                                >
+                                    <Select
+
+                                        onChange={(e) => setList(e.value)}
+                                        placeholder={"Select a list"}
+                                        borderColor={"#265798"}
+
+
+                                        options={[
+                                            {
+                                                label: "Wish List",
+                                                value: "wish",
+                                            },
+                                            {
+                                                label: "Favorite List",
+                                                value: "favorite",
+                                            },
+                                            {
+                                                label: "Watched List",
+                                                value: "watched",
+                                            },
+                                        ]}
                                     />
-                                    <Box width={"100%"}
-                                         bgColor={"#101526"}
-                                         textColor={"gray"}
-
-                                    >
-                                        <Select
-
-                                            onChange={(e) => setList(e.value)}
-                                            placeholder={"Select a list"}
-                                            borderColor={"#265798"}
-
-
-                                            options={[
-                                                {
-                                                    label: "Wish List",
-                                                    value: "wish",
-                                                },
-                                                {
-                                                    label: "Favorite List",
-                                                    value: "favorite",
-                                                },
-                                                {
-                                                    label: "Watched List",
-                                                    value: "watched",
-                                                },
-                                            ]}
-                                        />
-                                    </Box>
-
                                 </Box>
 
-                            </VStack>
 
-                        </ModalBody>
+                            </Box>
 
-                        <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
-                                Add The Movie
+                        </VStack>
 
-                            </Button>
+                    </ModalBody>
 
-                            <Button onClick={onClose}>
-                                Go Back </Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
-            </Box>
-        </>
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
+                            Add The Movie
+
+                        </Button>
+
+                        <Button onClick={onClose}>
+                            Go Back </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </Box>
+    </>
 
 
-    )
+)
 }
 
 export default DisplayMovies;
