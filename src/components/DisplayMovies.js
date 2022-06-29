@@ -83,7 +83,7 @@ const findMovie = async (e) => {
     console.log(search);
 
     function copyMovie(e) {
-        const temp = e.target.innerText
+        const temp = e.target.firstChild.data
         setMovie(temp.toLocaleLowerCase())
 
     }
@@ -155,7 +155,7 @@ return (
                                 <VStack>
                                     {foundMovies.map(movie => (
 
-                                        <Text onClick={copyMovie} color={"white"} key={movie.imdbID} value={movie.Title}>{movie.Title}</Text>
+                                        <Text onClick={copyMovie} color={"white"} key={movie.imdbID} value={movie.Title}>{movie.Title} ({movie.Year})</Text>
 
                                     ))}
 
