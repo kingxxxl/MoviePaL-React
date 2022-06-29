@@ -61,7 +61,7 @@ const findMovie = async (e) => {
     setCounter(counter + 1);
     if (counter >= 3) {
         setSearchLoading(true);
-        const request = await fetch(`https://www.omdbapi.com/?s=${e.target.value}&apikey=65199301&type=movie`,
+        const request = await fetch(`https://www.omdbapi.com/?s=${e.target.value}&apikey=65199301`,
             {method: 'GET'});
         const data = await request.json();
 
@@ -69,9 +69,6 @@ const findMovie = async (e) => {
         } else {
             await setFoundMovies(data.Search);
             await setSearchLoading(true);
-            setTimeout(() => {
-                console.log("Delayed for 1 second.");
-            }, "7000")
             await setFoundMovies(data.Search);
 
         }
@@ -86,7 +83,9 @@ const findMovie = async (e) => {
     console.log(search);
 
     function copyMovie(e) {
-        setMovie(e.target.innerText)
+        const temp = e.target.innerText
+        setMovie(temp.toLocaleLowerCase())
+
     }
 
 return (
