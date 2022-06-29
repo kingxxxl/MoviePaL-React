@@ -34,10 +34,8 @@ const DisplayMovies = ({movies, listType}) => {
     const [foundsomething, setFoundsomething] = useState(false);
     const [search, setSearch] = useState([]);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const request = await fetch("/movie/add/name/" + list + "-list/" + movie, {
             method: 'POST',
         });
@@ -83,6 +81,10 @@ const DisplayMovies = ({movies, listType}) => {
 
     }
 
+    useEffect(() =>{
+        console.log(listType)
+        setList(listType);
+    },[])
     return (
 
         <>
@@ -170,10 +172,8 @@ const DisplayMovies = ({movies, listType}) => {
                                         <Select
 
                                             onChange={(e) => setList(e.value)}
-                                            placeholder={"Select a list"}
+                                            placeholder={listType + " list"}
                                             borderColor={"#265798"}
-
-
                                             options={[
                                                 {
                                                     label: "Wish List",
