@@ -29,19 +29,22 @@ const Dashboard = () => {
     const {logout, removeIsLogged} = useContext(AuthContext);
 
     return (
-        <VStack h={"100vh"} bg={"#101526"}>
 
 
-            <Text color="white" fontSize="1.8rem" my={"3rem"}>
-                Welcome back {localStorage.getItem('userName').toLocaleUpperCase()}!
+
+        <VStack h={"120vh"} bg={"#101526"}>
+
+
+            <Text color="white" textAlign={"center"} shadow={"2xl"} fontWeight={"bold"} fontFamily={"s"} fontSize="2rem" my={"3rem"}>
+                MOVIE LIGHT FOR EVERY NIGHT
             </Text>
 
             <HStack>
 
                 <SimpleGrid columns={[1, 3, 3]}>
-                    <Image onClick={() => navigate('/wishlist')} cursor={"pointer"}   src={wish} alt="wishlist" />
-                    <Image src={fav} onClick={() => navigate('/favorite-list')} cursor={"pointer"} alt="favoritelist" />
-                    <Image src={watched} onClick={() => navigate('/watched-list')} cursor={"pointer"} alt="watchedlist" />
+                    <Image opacity={1}  _hover={{opacity: 0.7}}  onClick={() => navigate('/wishlist')} cursor={"pointer"}   src={wish} alt="wishlist" />
+                    <Image opacity={1}  _hover={{opacity: 0.7}} src={fav} onClick={() => navigate('/favorite-list')} cursor={"pointer"} alt="favoritelist" />
+                    <Image opacity={1}  _hover={{opacity: 0.7}} src={watched} onClick={() => navigate('/watched-list')} cursor={"pointer"} alt="watchedlist" mb={"90px"} />
                 </SimpleGrid>
 
 
@@ -66,18 +69,27 @@ const Dashboard = () => {
             {/*</VStack>*/}
 
 
-            <Button
-                onClick={() => {
-                    const isLogedOut = logout();
-                    if (isLogedOut) {
-                        removeIsLogged();
-                        navigate('/login');
-                    }
-                }}
-            >
-                Logout !
-            </Button>
+            <Box>
+                <Button
+                    w={"13rem"}
+                    colorScheme={"whiteAlpha"}
+                    fontWeight={"bold"}
+                    fontSize={"1.4rem"}
+                    p={6}
+                    onClick={() => {
+                        const isLogedOut = logout();
+                        if (isLogedOut) {
+                            removeIsLogged();
+                            navigate('/login');
+                        }
+                    }}
+                >
+                    LOGOUT
+                </Button>
+            </Box>
+
         </VStack>
+
     );
 };
 
