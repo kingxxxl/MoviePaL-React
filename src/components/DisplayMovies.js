@@ -16,6 +16,8 @@ import {
 import {useNavigate} from "react-router-dom";
 import {Select} from "chakra-react-select";
 import MovieCard from "./MovieCard";
+import { useToast } from '@chakra-ui/react'
+
 
 
 const DisplayMovies = ({movies, listType}) => {
@@ -24,6 +26,7 @@ const DisplayMovies = ({movies, listType}) => {
     const [isNewLine, setIsNewLine] = useState(true);
 
     const {isOpen, onOpen, onClose} = useDisclosure()
+    const toast = useToast()
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
@@ -41,8 +44,16 @@ const DisplayMovies = ({movies, listType}) => {
         });
         const data = await request.json();
         if (request.status === 200) {
-            navigate(0)
+           await toast({
+                title: 'Movie was added.',
+                status: 'success',
+                duration: 22,
+                isClosable: true,
+            })
+            setTimeout(navigate(0),300);
+
         }
+
         if (request.status === 400) {
             console.log('error');
             return;
