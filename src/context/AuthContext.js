@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       });
       console.log(request.url);
 
-      if (request.status === 200) {
+      if (request.status === 201) {
         return true;
       } else {
         return false;

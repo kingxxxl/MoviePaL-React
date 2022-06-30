@@ -11,13 +11,14 @@ import {
 } from '@chakra-ui/react';
 import Logo from '../img/posters.jpg';
 import back from '../img/back_v2.png';
-
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import { useToast } from '@chakra-ui/react'
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const toast = useToast()
 
   const navigate = useNavigate();
 
@@ -26,12 +27,22 @@ const Login = () => {
   const onClick = async () => {
     const registerResult = await register(username, password);
     if (registerResult) {
+      toast({
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
       navigate('/login');
     }
   };
 
+
+
   return (
       <HStack h={"110vh"} bg={"#101526"} spacing="0">
+
         <Flex
             height="100vh"
             width={['100%', '100%', '50%']}
