@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
+  Box,
   Button, Divider,
   Flex,
   HStack,
@@ -11,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 // import Logo from '../img/logobs.png';
 import Logo from '../img/posters.jpg';
+import back from '../img/back_v2.png';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
@@ -44,9 +46,14 @@ const Login = ({ setLoggedIn, loggedIn }) => {
         justifyContent="center"
       >
         <VStack width={['90%', '600px']} spacing="2rem">
-          <Text fontWeight="extrabold" color="blue.700" fontSize="70px">
-            MoviePal
-          </Text>
+          <Box>
+            <Image  borderRadius={"xl"} backgroundColor={"rgba(111, 0, 255)"} src={back} />
+            <Text fontFamily={"fantasy"} color="white" fontSize="3.6rem">
+              MoviePal
+            </Text>
+
+          </Box>
+
           <Text color="white" fontSize="70px">
             Welcome back
           </Text>
@@ -71,16 +78,24 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           <Button
             fontSize="1.5rem"
             width="182px"
-            backgroundColor="#121440"
-            color="white"
+            backgroundColor={'#6f00ff'}
+            textColor={'white'}
             onClick={onClick}
           >
             Login
           </Button>
-          <HStack textColor={"#6f00ff"} fontSize="22px">
-            <Text color="#A8A6AF">You don't have an account? </Text>
+          <HStack textColor={"#6f00ff"} fontSize="22px" >
 
-            <Link   to="/register">Register !</Link>
+            <Box mt={"90px"} >
+              <HStack>
+                <Text color="#A8A6AF" >You don't have an account?</Text>
+
+                <Link    to="/register">Register !</Link>
+              </HStack>
+
+
+            </Box>
+
           </HStack>
         </VStack>
 
@@ -97,7 +112,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
         justifyContent="center"
         backgroundColor="#F9F9FC"
       >
-        <Image src={Logo} width="100%" height="100%"></Image>
+        <Image src={Logo} width="100%" height="110vh"></Image>
       </Flex>
     </HStack>
   );
