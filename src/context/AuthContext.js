@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
         },
         method: 'POST',
       });
+
+      console.log(request.url);
       const data = await request.json();
 
       if (request.status === 401) {
