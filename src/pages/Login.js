@@ -10,7 +10,6 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-// import Logo from '../img/logobs.png';
 import Logo from '../img/posters.jpg';
 import back from '../img/back_v2.png';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -38,7 +37,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
   }
 
   return (
-    <HStack bg={"#101526"} spacing="0">
+    <HStack h={"110vh"} bg={"#101526"} spacing="0">
       <Flex
         height="100vh"
         width={['100%', '100%', '50%']}

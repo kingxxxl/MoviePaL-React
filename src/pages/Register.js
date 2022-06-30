@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
 import {
+  Box,
   Button,
   Flex,
   HStack,
   Image,
-  Input,
+  Input, Stack,
   Text,
   VStack,
 } from '@chakra-ui/react';
-// import Logo from '../img/logobs.png';
 import Logo from '../img/posters.jpg';
+import back from '../img/back_v2.png';
 
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
@@ -30,61 +31,83 @@ const Login = () => {
   };
 
   return (
-    <HStack spacing="0">
-      <Flex
-        height="100vh"
-        width={['100%', '100%', '50%']}
-        backgroundColor="white"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <VStack width={['90%', '600px']} spacing="2rem">
-          <Text fontWeight="extrabold" color="blue.700" fontSize="70px">
-            MoviePal
-          </Text>
-          <Text  color="#121440" fontSize="70px">
-            Welcome !
-          </Text>
-          <Input
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            height="53px"
-            placeholder="Username"
-            type="text"
-          ></Input>
-          <Input
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            height="53px"
-            placeholder="Password"
-            type="password"
-          ></Input>
-          <Button
-            fontSize="1.5rem"
-            width="182px"
-            onClick={onClick}
-            backgroundColor="#121440"
-            color="white"
-          >
-            Register
-          </Button>
-          <HStack fontSize="22px">
-            <Text color="#A8A6AF">You have an account ? </Text>
-            <Link to="/login">Login !</Link>
-          </HStack>
-        </VStack>
-      </Flex>
-      <Flex
-        width="50%"
-        display={['none', 'none', 'flex']}
-        height="100vh"
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor="#F9F9FC"
-      >
-        <Image src={Logo} width="100%" height="100%"></Image>
-      </Flex>
-    </HStack>
+      <HStack h={"110vh"} bg={"#101526"} spacing="0">
+        <Flex
+            height="100vh"
+            width={['100%', '100%', '50%']}
+            alignItems="center"
+            justifyContent="center"
+        >
+          <VStack width={['90%', '600px']} spacing="2rem">
+            <Box>
+              <Image borderRadius={"xl"} backgroundColor={"rgba(111, 0, 255)"} src={back}/>
+              <Text fontFamily={"fantasy"} color="white" fontSize="3.6rem">
+                MoviePal
+              </Text>
+
+            </Box>
+
+            <Text color="white" fontSize="70px">
+              Welcome back
+            </Text>
+            <Input
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                height="53px"
+                placeholder="Username"
+                type="text"
+                color={"white"}
+
+            ></Input>
+            <Input
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                height="53px"
+                placeholder="Password"
+                type="password"
+                color={"white"}
+
+            ></Input>
+            <Button
+                fontSize="1.5rem"
+                width="182px"
+                backgroundColor={'#6f00ff'}
+                textColor={'white'}
+                onClick={onClick}
+            >
+              Register
+            </Button>
+            <HStack textColor={"#6f00ff"} fontSize="22px">
+
+              <Box mt={"90px"}>
+                <HStack>
+                  <Text color="#A8A6AF">You have an account ? </Text>
+
+                  <Link to="/login">Login !</Link>
+                </HStack>
+
+
+              </Box>
+
+            </HStack>
+          </VStack>
+
+        </Flex>
+
+        <Stack bg={"#6f00ff"} direction='row' h='110vh' p={"2px"}>
+        </Stack>
+
+        <Flex
+            width="50%"
+            display={['none', 'none', 'flex']}
+            height="100vh"
+            alignItems="center"
+            justifyContent="center"
+            backgroundColor="#F9F9FC"
+        >
+          <Image src={Logo} width="100%" height="110vh"></Image>
+        </Flex>
+      </HStack>
   );
 };
 
