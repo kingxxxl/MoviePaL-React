@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
       const request = await fetch('/user/login', {
         headers: {
           Authorization: `Basic ${window.btoa(username + ':' + password)}`,
+          "X-Requested-With": `XMLHttpRequest`,
         },
         method: 'POST',
       });

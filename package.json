@@ -47,5 +47,5 @@
   "devDependencies": {
     "prettier": "^2.7.1"
   },
-  "proxy": "http://e895-37-224-52-18.ngrok.io"
+  "proxy": "http://6023-37-224-52-18.ngrok.io"
 }
