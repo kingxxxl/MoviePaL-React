@@ -14,11 +14,14 @@ import Logo from '../img/posters.jpg';
 import back from '../img/back_v2.png';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import { useToast } from '@chakra-ui/react'
+
 
 const Login = ({ setLoggedIn, loggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const toast = useToast()
 
   const { login, addIsLogged } = useContext(AuthContext);
 
@@ -28,6 +31,15 @@ const Login = ({ setLoggedIn, loggedIn }) => {
       addIsLogged();
       navigate('/dashboard');
     }
+    else {
+      toast({
+        title: 'Wrong username or password',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+
   };
 
   // console.log(login);

@@ -10,6 +10,7 @@ import FavoriteList from "./pages/MovieLists/FavoriteList";
 import WatchedList from "./pages/MovieLists/WatchedList";
 
 const App = () => {
+  window.BASE_URL = 'http://6023-37-224-52-18.ngrok.io';
   return (
     <ChakraProvider >
       <BrowserRouter>

@@ -41,7 +41,7 @@ const Dashboard = () => {
 
             <HStack>
 
-                <SimpleGrid columns={[1, 3, 3]}>
+                <SimpleGrid columns={[1, 1, 3]} >
                     <Image opacity={1}  _hover={{opacity: 0.7}}  onClick={() => navigate('/wishlist')} cursor={"pointer"}   src={wish} alt="wishlist" />
                     <Image opacity={1}  _hover={{opacity: 0.7}} src={fav} onClick={() => navigate('/favorite-list')} cursor={"pointer"} alt="favoritelist" />
                     <Image opacity={1}  _hover={{opacity: 0.7}} src={watched} onClick={() => navigate('/watched-list')} cursor={"pointer"} alt="watchedlist" mb={"90px"} />
